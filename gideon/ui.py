@@ -1,6 +1,5 @@
 from rich.console import Console
 from rich.panel import Panel
-from gideon.system import get_project_name
 from gideon.system import (
     get_project_name,
     get_python_version,
@@ -32,6 +31,7 @@ def show_help() -> None:
     console.print("  help     Show this help menu")
     console.print("  version  Show Gideon's version")
     console.print("  clear    Clear the screen")
+    console.print("  about    About")
     console.print("  exit     Exit Gideon")
 
 def show_version() -> None:
@@ -44,3 +44,24 @@ def refresh_dashboard() -> None:
 
     console.clear()
     show_welcome()
+
+def show_about(
+        version: str,
+        project: str,
+        python_version: str,
+        git_branch: str,
+    
+
+) -> None:
+    console.print(
+        Panel.fit(
+            
+            f"Version: {version}\n"
+            f"Project: {project}\n"
+            f"Python Version: {python_version}\n"
+            f"Git Branch: {git_branch}\n",
+            title="About Gideon",
+        )
+
+    )   
+
