@@ -1,4 +1,5 @@
 import typer
+from gideon.config import load_config
 from gideon.system import(
     get_project_name,
     get_python_version,
@@ -10,30 +11,24 @@ from gideon.ui import (
     show_welcome,
     show_version,
     refresh_dashboard,
-    show_about
+    show_about,
+    show_config
 )
 app = typer.Typer()
 
-def about():
-            version = "v0.3.0"
-            project = get_project_name()
-            python_version = get_python_version()
-            git_branch = get_git_branch()
 
-            show_about(
-                version,
-                project,
-                python_version,
-                git_branch,
-            )
+def config():
+    config_data = load_config()
+    show_config(config_data)
+
 
 
 commands = {
     "help": show_help,
     "version": show_version,
     "clear": refresh_dashboard,
-    "about": show_about
-
+    "about": show_about,
+    "config": config
 
 } 
 

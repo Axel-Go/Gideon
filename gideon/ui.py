@@ -28,11 +28,12 @@ def show_help() -> None:
 
     console.print("[bold cyan]Available Commands[/bold cyan]\n")
 
-    console.print("  help     Show this help menu")
-    console.print("  version  Show Gideon's version")
-    console.print("  clear    Clear the screen")
-    console.print("  about    About")
-    console.print("  exit     Exit Gideon")
+    console.print("  help       Show this help menu")
+    console.print("  version    Show Gideon's version")
+    console.print("  clear      Clear the screen")
+    console.print("  about      About")
+    console.print("  config     Show Gideon's Configuration")
+    console.print("  exit       Exit Gideon")
 
 def show_version() -> None:
     """Display Gideon's current version"""
@@ -52,7 +53,7 @@ def show_about() -> None:
         Panel.fit(
             
             "Name:    Gideon\n"
-            "Version: v0.3.0"
+            "Version: v0.3.0\n"
             "Author:  Axel Go\n"
             "Purpose: Personal AI Assistant\n"
             "Status:  In Development\n",
@@ -60,4 +61,20 @@ def show_about() -> None:
         )
 
     )   
+
+def show_config(config_data) -> None:
+    """Display Gideon's Configuration Settings"""
+    console.print(
+        Panel.fit(
+            
+            f"Theme: {config_data['theme']}\n"
+            f"Provider: {config_data['provider']}\n"
+            f"Model: {config_data['model']}\n"
+            f"Debug: {config_data['debug']}\n"
+            f"History: {config_data['history']}",
+            title = "Configuration"
+
+        )
+    )
+
 
