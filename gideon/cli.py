@@ -32,7 +32,7 @@ commands = {
     "help": show_help,
     "version": show_version,
     "clear": refresh_dashboard,
-    "about":about
+    "about": show_about
 
 
 } 

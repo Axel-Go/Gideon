@@ -45,21 +45,17 @@ def refresh_dashboard() -> None:
     console.clear()
     show_welcome()
 
-def show_about(
-        version: str,
-        project: str,
-        python_version: str,
-        git_branch: str,
+def show_about() -> None:
+    """Display Gideon's Information"""
     
-
-) -> None:
     console.print(
         Panel.fit(
             
-            f"Version: {version}\n"
-            f"Project: {project}\n"
-            f"Python Version: {python_version}\n"
-            f"Git Branch: {git_branch}\n",
+            "Name:    Gideon\n"
+            "Version: v0.3.0"
+            "Author:  Axel Go\n"
+            "Purpose: Personal AI Assistant\n"
+            "Status:  In Development\n",
             title="About Gideon",
         )
 
