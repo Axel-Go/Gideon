@@ -1,1 +1,2 @@
 # Gideon
+CLI AI Assistant
