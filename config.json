@@ -3,5 +3,6 @@
     "provider": null,
     "model": null,
     "debug": false,
-    "history": true
+    "history": true,
+    "config": "default"
 }
