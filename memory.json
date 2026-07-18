@@ -1,0 +1,16 @@
+{
+    "user": {
+        "name": "Axel",
+        "projects": [
+            "Gideon",
+            "Katharsis"
+        ],
+        "interests": [
+            "Software Engineering",
+            "Artificial Intelligence"
+        ]
+    },
+    "notes": [
+        "my favorite language is python"
+    ]
+}

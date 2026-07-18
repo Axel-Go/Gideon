@@ -1,13 +1,10 @@
 import typer
+from gideon.ai import ask
 from gideon.config import (
     load_config,
     save_config
 )
-from gideon.system import(
-    get_project_name,
-    get_python_version,
-    get_git_branch
-)
+
 from gideon.ui import (
     console, 
     show_help, 
@@ -15,19 +12,10 @@ from gideon.ui import (
     show_version,
     refresh_dashboard,
     show_about,
-    show_config
+    show_config,
+    show_response
 )
 app = typer.Typer()
-
-
-def set_theme():
-    config_data = load_config()
-
-    config_data["theme"] = "cyberpunk"
-
-    save_config(config_data)
-    print("Theme updated.")
-
 
 
 def config():
@@ -44,7 +32,7 @@ def set_config(setting, value):
     ]
 
     if setting not in valid_settings:
-        print(f"Unknown setting: {setting}")
+        console.print(f"Unknown setting: {setting}")
         return
     config_data = load_config()
 
@@ -53,7 +41,7 @@ def set_config(setting, value):
 
     save_config(config_data)
 
-    print(f"{setting} updated to {value}.")
+    console.print(f"{setting} updated to {value}.")
 
 
 
@@ -62,8 +50,7 @@ commands = {
     "version": show_version,
     "clear": refresh_dashboard,
     "about": show_about,
-    "config": config,
-    "theme": set_theme
+    "config": config
 
 } 
 
@@ -75,35 +62,42 @@ def main() -> None:
     show_welcome()
 
     while True:
-        user_input = input("> ").strip().lower()
-        parts = user_input.split()
+        user_input = console.input("[bold cyan]>[/bold cyan] ").strip()
 
-        if not parts:
+        if not user_input:
             continue
 
-        command = parts[0]
-       
+        if user_input.startswith("/"):
+            parts = user_input[1:].lower().split()
+            if not parts:
+                continue
+            command = parts[0]
+        
+        else:
+            response = ask(user_input)
+            show_response(response)
+            continue
 
         if command == "exit":
-            print("til next time!")
+            console.print("til next time!")
             break
 
         
         elif command == "set":
-            if len(parts) !=3:
-                print("Usage: set <setting> <value>")
+            if len(parts) < 3:
+                console.print("Usage: /set <setting> <value>")
             else:
                 setting = parts[1]
-                value = parts[2]
+                value = " ".join(parts[2:])
                 set_config(setting, value)
         
-        
+
         elif command in commands:
             commands[command]()
             
             
         else:
-            print(f"Unknown command: {command}")
+            console.print(f"[red]Unknown command: {command}[/red]")
 
 
 

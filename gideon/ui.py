@@ -1,5 +1,6 @@
 from rich.console import Console
 from rich.panel import Panel
+from rich.markdown import Markdown
 from gideon.system import (
     get_project_name,
     get_python_version,
@@ -28,12 +29,12 @@ def show_help() -> None:
 
     console.print("[bold cyan]Available Commands[/bold cyan]\n")
 
-    console.print("  help       Show this help menu")
-    console.print("  version    Show Gideon's version")
-    console.print("  clear      Clear the screen")
-    console.print("  about      About")
-    console.print("  config     Show Gideon's Configuration")
-    console.print("  exit       Exit Gideon")
+    console.print("  /help       Show this help menu")
+    console.print("  /version    Show Gideon's version")
+    console.print("  /clear      Clear the screen")
+    console.print("  /about      About")
+    console.print("  /config     Show Gideon's Configuration")
+    console.print("  /exit       Exit Gideon")
 
 def show_version() -> None:
     """Display Gideon's current version"""
@@ -76,5 +77,8 @@ def show_config(config_data) -> None:
 
         )
     )
+def show_response(response: str) -> None:
+    """Display Gideon's response."""
 
+    console.print(Markdown(response))
 
